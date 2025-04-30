@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software Engineer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md py-4 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-blue-600">Hemant Singh</h1>
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="#" class="hover:text-blue-500 transition">Home</a></li>
+        <li><a href="#about" class="hover:text-blue-500 transition">About</a></li>
+        <li><a href="#skills" class="hover:text-blue-500 transition">Skills</a></li>
+        <li><a href="#experience" class="hover:text-blue-500 transition">Experience</a></li>
+        <li><a href="#projects" class="hover:text-blue-500 transition">Projects</a></li>
+        <li><a href="#testimonials" class="hover:text-blue-500 transition">Testimonials</a></li>
+        <li><a href="#blog" class="hover:text-blue-500 transition">Blog</a></li>
+        <li><a href="#contact" class="hover:text-blue-500 transition">Contact</a></li>
+      </ul>
+      <button class="md:hidden" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars text-blue-600 text-xl"></i>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white px-4 py-2">
+      <ul class="space-y-2">
+        <li><a href="#" class="block py-2 hover:text-blue-500 transition">Home</a></li>
+        <li><a href="#about" class="block py-2 hover:text-blue-500 transition">About</a></li>
+        <li><a href="#skills" class="block py-2 hover:text-blue-500 transition">Skills</a></li>
+        <li><a href="#experience" class="block py-2 hover:text-blue-500 transition">Experience</a></li>
+        <li><a href="#projects" class="block py-2 hover:text-blue-500 transition">Projects</a></li>
+        <li><a href="#testimonials" class="block py-2 hover:text-blue-500 transition">Testimonials</a></li>
+        <li><a href="#blog" class="block py-2 hover:text-blue-500 transition">Blog</a></li>
+        <li><a href="#contact" class="block py-2 hover:text-blue-500 transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-r from-blue-50 to-blue-100 text-center">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between">
+        <div class="md:w-1/2 text-left mb-10 md:mb-0">
+          <h2 class="text-5xl font-bold mb-4 text-gray-800">Hi, I'm <span class="text-blue-600">Hemant</span></h2>
+          <p class="text-xl mb-6 text-gray-600">A Software Engineer passionate about Web Development and AI</p>
+          <div class="flex space-x-4">
+            <a href="#projects" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">View My Work</a>
+            <a href="#contact" class="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-full hover:bg-blue-50 transition">Contact Me</a>
+          </div>
+          <div class="flex mt-8 space-x-4">
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition"><i class="fab fa-github text-2xl"></i></a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition"><i class="fab fa-linkedin text-2xl"></i></a>
+            <a href="#" class="text-gray-600 hover:text-blue-600 transition"><i class="fab fa-twitter text-2xl"></i></a>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <img src="https://picsum.photos/200/300" alt="Hemant Singh" class="rounded-full w-64 h-64 mx-auto object-cover shadow-lg border-4 border-white" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <img src="https://picsum.photos/200/300" alt="About Me" class="rounded-lg shadow-lg" />
+      </div>
+      <div class="md:w-1/2 md:pl-10">
+        <h3 class="text-3xl font-bold mb-6">About Me</h3>
+        <p class="text-lg leading-relaxed mb-6">
+          I'm a software engineer with experience in building modern, responsive web applications using technologies like JavaScript, React, Node.js, and Tailwind CSS. I love solving complex problems and building solutions that make a real difference.
+        </p>
+        <p class="text-lg leading-relaxed mb-6">
+          With a background in computer science and a passion for continuous learning, I stay up-to-date with the latest technologies and best practices in the industry.
+        </p>
+        <a href="#" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">Download Resume <i class="fas fa-download ml-2"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="bg-blue-50 py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-center">My Skills</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Skill 1 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fab fa-js text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">JavaScript</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 90%"></div>
+          </div>
+        </div>
+        <!-- Skill 2 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fab fa-react text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">React</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
+          </div>
+        </div>
+        <!-- Skill 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fab fa-node-js text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">Node.js</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+        <!-- Skill 4 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fab fa-python text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">Python</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 75%"></div>
+          </div>
+        </div>
+        <!-- Skill 5 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fab fa-html5 text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">HTML5</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 95%"></div>
+          </div>
+        </div>
+        <!-- Skill 6 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fab fa-css3-alt text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">CSS3</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 90%"></div>
+          </div>
+        </div>
+        <!-- Skill 7 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-database text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">MongoDB</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 80%"></div>
+          </div>
+        </div>
+        <!-- Skill 8 -->
+        <div class="bg-white p-6 rounded-lg shadow-md text-center hover:transform hover:scale-105 transition duration-300">
+          <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-robot text-3xl text-blue-600"></i>
+          </div>
+          <h4 class="text-xl font-semibold mb-2">AI/ML</h4>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 70%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-center">Work Experience</h3>
+      <div class="space-y-8">
+        <!-- Experience 1 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <div>
+              <h4 class="text-xl font-semibold">Senior Software Engineer</h4>
+              <p class="text-blue-600">Tech Innovations Inc.</p>
+            </div>
+            <div class="mt-2 md:mt-0">
+              <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">2022 - Present</span>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">
+            Led the development of a scalable web application using React, Node.js, and MongoDB. Implemented CI/CD pipelines and improved application performance by 40%.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">React</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">Node.js</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">MongoDB</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">AWS</span>
+          </div>
+        </div>
+        <!-- Experience 2 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <div>
+              <h4 class="text-xl font-semibold">Software Developer</h4>
+              <p class="text-blue-600">Digital Solutions Ltd.</p>
+            </div>
+            <div class="mt-2 md:mt-0">
+              <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">2020 - 2022</span>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">
+            Developed and maintained multiple client websites and web applications. Collaborated with design and product teams to implement new features and improve user experience.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">JavaScript</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">Vue.js</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">PHP</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">MySQL</span>
+          </div>
+        </div>
+        <!-- Experience 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+            <div>
+              <h4 class="text-xl font-semibold">Junior Web Developer</h4>
+              <p class="text-blue-600">WebCraft Agency</p>
+            </div>
+            <div class="mt-2 md:mt-0">
+              <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded">2018 - 2020</span>
+            </div>
+          </div>
+          <p class="text-gray-600 mb-4">
+            Assisted in the development of responsive websites for various clients. Gained experience in front-end technologies and best practices for web development.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">HTML</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">CSS</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">JavaScript</span>
+            <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">WordPress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="bg-white py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-center">Projects</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <img src="https://picsum.photos/200/300" alt="Portfolio Website" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">Portfolio Website</h4>
+            <p class="text-gray-600 mb-4">A clean and responsive portfolio website built using HTML, Tailwind CSS and JavaScript.</p>
+            <div class="flex justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition">View Demo</a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition">Source Code</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <img src="https://picsum.photos/200/300" alt="Task Manager App" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">Task Manager App</h4>
+            <p class="text-gray-600 mb-4">A full-stack task manager app using Node.js, Express, and MongoDB.</p>
+            <div class="flex justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition">View Demo</a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition">Source Code</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <img src="https://picsum.photos/200/300" alt="AI Chatbot" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">AI Chatbot</h4>
+            <p class="text-gray-600 mb-4">An AI-powered chatbot using Python and OpenAI API to automate customer support.</p>
+            <div class="flex justify-between">
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition">View Demo</a>
+              <a href="#" class="text-blue-600 hover:text-blue-800 transition">Source Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="bg-blue-50 py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-center">What People Say</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Testimonial 1 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Client" class="w-12 h-12 rounded-full mr-4" />
+            <div>
+              <h4 class="font-semibold">Sarah Johnson</h4>
+              <p class="text-sm text-gray-600">CEO, Tech Innovations</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Hemant is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are impressive."
+          </p>
+          <div class="flex text-yellow-400 mt-4">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Client" class="w-12 h-12 rounded-full mr-4" />
+            <div>
+              <h4 class="font-semibold">Michael Chen</h4>
+              <p class="text-sm text-gray-600">Project Manager, Digital Solutions</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Working with Hemant was a pleasure. He's not only technically skilled but also communicates effectively and meets deadlines consistently."
+          </p>
+          <div class="flex text-yellow-400 mt-4">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
+          <div class="flex items-center mb-4">
+            <img src="https://via.placeholder.com/150" alt="Client" class="w-12 h-12 rounded-full mr-4" />
+            <div>
+              <h4 class="font-semibold">Emily Rodriguez</h4>
+              <p class="text-sm text-gray-600">Founder, StartupX</p>
+            </div>
+          </div>
+          <p class="text-gray-600 italic">
+            "Hemant helped us build our MVP in record time. His technical expertise and ability to understand our business needs made all the difference."
+          </p>
+          <div class="flex text-yellow-400 mt-4">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl font-bold mb-10 text-center">Latest Articles</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Blog Post 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <img src="https://picsum.photos/200/300" alt="Blog Post" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <div class="flex items-center mb-2">
+              <span class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-2"></i>April 15, 2025</span>
+              <span class="mx-2 text-gray-300">|</span>
+              <span class="text-sm text-gray-500"><i class="far fa-clock mr-2"></i>5 min read</span>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">The Future of Web Development</h4>
+            <p class="text-gray-600 mb-4">Exploring emerging technologies and trends that will shape the future of web development.</p>
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition">Read More →</a>
+          </div>
+        </div>
+        <!-- Blog Post 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <img src="https://picsum.photos/200/300" alt="Blog Post" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <div class="flex items-center mb-2">
+              <span class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-2"></i>March 28, 2025</span>
+              <span class="mx-2 text-gray-300">|</span>
+              <span class="text-sm text-gray-500"><i class="far fa-clock mr-2"></i>7 min read</span>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Building Scalable Node.js Applications</h4>
+            <p class="text-gray-600 mb-4">Best practices and architecture patterns for building scalable Node.js applications.</p>
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition">Read More →</a>
+          </div>
+        </div>
+        <!-- Blog Post 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+          <img src="https://picsum.photos/200/300" alt="Blog Post" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <div class="flex items-center mb-2">
+              <span class="text-sm text-gray-500"><i class="far fa-calendar-alt mr-2"></i>February 10, 2025</span>
+              <span class="mx-2 text-gray-300">|</span>
+              <span class="text-sm text-gray-500"><i class="far fa-clock mr-2"></i>4 min read</span>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Getting Started with AI in Web Applications</h4>
+            <p class="text-gray-600 mb-4">A beginner's guide to integrating AI capabilities into your web applications.</p>
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 max-w-4xl mx-auto">
+    <h3 class="text-3xl font-bold mb-10 text-center">Contact Me</h3>
+    <div class="bg-white p-8 rounded-lg shadow-lg">
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <h4 class="text-xl font-semibold mb-4">Get In Touch</h4>
+          <p class="text-gray-600 mb-6">
+            Have a project in mind or want to discuss a potential collaboration? Feel free to reach out!
+          </p>
+          <div class="space-y-4">
+            <div class="flex items-center">
+              <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                <i class="fas fa-envelope text-blue-600"></i>
+              </div>
+              <span>hemant@example.com</span>
+            </div>
+            <div class="flex items-center">
+              <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                <i class="fas fa-phone text-blue-600"></i>
+              </div>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="flex items-center">
+              <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                <i class="fas fa-map-marker-alt text-blue-600"></i>
+              </div>
+              <span>San Francisco, CA</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form class="space-y-4" onsubmit="return handleSubmit(event)">
+            <input type="text" placeholder="Name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            <input type="email" placeholder="Email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+            <textarea placeholder="Message" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5" required></textarea>
+            <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition w-full">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <h2 class="text-2xl font-bold text-blue-400 mb-2">Hemant Singh</h2>
+          <p class="text-gray-400">Software Engineer & Web Developer</p>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-github text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+          <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+        </div>
+      </div>
+      <hr class="border-gray-700 my-6" />
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p>&copy; 2025 Hemant Singh. All rights reserved.</p>
+        <div class="mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white transition mr-4">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert('Thanks for your message! I will get back to you soon.');
+      event.target.reset();
+    }
+    
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+</body>
+
+</html>
