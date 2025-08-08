@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Clone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .light-mode {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .dark-mode .chat-container {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: #171717;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow-x: hidden;
+            transition: width 0.3s;
+        }
+
+        .light-mode .sidebar {
+            background-color: #f5f5f5;
+        }
+
+        .sidebar.collapsed {
+            width: 50px;
+        }
+
+        .tooltip {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: rgb(0, 0, 0);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #sidebar-toggle {
+            background-color: transparent;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .light-mode #sidebar-toggle {
+            color: #333;
+            background-color: #fff;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .sidebar-content {
+            padding-top: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar.collapsed .sidebar-content {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .conversation-list {
+            padding: 0 20px;
+        }
+
+        .conversation {
+            margin-bottom: 10px;
+        }
+
+        .conversation-text {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .light-mode .conversation-text {
+            color: #333;
+        }
+
+        .conversation-content {
+            color: #ddd;
+        }
+
+        .light-mode .conversation-content {
+            color: #666;
+        }
+
+        #new-conversation-btn {
+            background-color: #3a3b3b;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: calc(100% - 40px);
+            margin: 0 20px;
+        }
+
+        #new-conversation-btn:hover {
+            background-color: #242020;
+        }
+
+        .light-mode #new-conversation-btn {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .light-mode #new-conversation-btn:hover {
+            background-color: #d0d0d0;
+        }
+
+        .chat-container {
+            width: calc(100% - 300px);
+            height: 100vh;
+            margin-left: 300px;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .sidebar.collapsed + .chat-container {
+            width: calc(100% - 50px);
+            margin-left: 50px;
+        }
+
+        .chat-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .chat-header {
+            margin-left: 2%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+            height: 60px;
+            background-color: #171717;
+            padding: 0 20px;
+        }
+
+        .light-mode h1 {
+            color: black;
+        }
+
+        .dark-mode h1 {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+
+        .light-mode .chat-header {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .dark-mode .chat-header {
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+
+        h1 {
+            color: #cfcfcf;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 34px;
+            transition: 0.4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 10px;
+            width: 10px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        input:checked + .slider {
+            background-color: #484849;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(16px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .chat-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .chat-box p {
+            margin: 10px 0;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .input-container {
+            display: flex;
+            padding: 15px;
+            border-top: 0.01px solid #5c5b5b;
+        }
+
+        .light-mode .input-container {
+            border-top: 0.01px solid #ccc;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            margin-left: 5%;
+            border: 1px solid #ccc;
+            background-color: #1e1e1e;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #ddd;
+        }
+
+        .light-mode input[type="text"] {
+            color: #171717;
+            background-color: #f9f9f9;
+        }
+
+        .dark-mode input[type="text"] {
+            color: #ddd;
+            background-color: #1d1c1c;
+        }
+
+        #send-button {
+            padding: 10px 20px;
+            border: none;
+            border: 1px solid #ccc;
+            margin-right: 5%;
+            background-color: #1d1c1c;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .light-mode #send-button {
+            color: #171717;
+            background-color: #f9f9f9;
+        }
+
+        #send-button:hover {
+            background-color: #333;
+        }
+
+        .light-mode #send-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .empty-state {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .empty-state h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .empty-state p {
+            color: #999;
+            font-size: 16px;
+        }
+
+        .dark-mode .empty-state h2 {
+            color: #ccc;
+        }
+
+        .dark-mode .empty-state p {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar collapsed">
+        <div class="tooltip">
+            <span class="tooltiptext">Open Sidebar</span>
+            <button id="sidebar-toggle">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="sidebar-content">
+            <div class="conversation-list">
+                <div class="conversation">
+                    <p class="conversation-text">Last Conversation:</p>
+                    <p class="conversation-content">No conversation yet</p>
+                </div>
+            </div>
+            <button id="new-conversation-btn">Start New Conversation</button>
+        </div>
+    </div>
+
+    <div class="chat-container light-mode">
+        <div class="chat-content">
+            <div class="chat-header">
+                <div class="logo-container">
+                    <h1>ChatGPT 3.5&nbsp;<i class="fa fa-caret-down"></i></h1>
+                </div>
+                <div class="mode-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="mode-toggle-checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="chat-box" id="chat-box">
+                <div class="empty-state">
+                    <div>
+                        <h2>How can I help you today?</h2>
+                        <p>Start a conversation by typing a message below.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message...">
+                <button id="send-button"><b>&uarr;</b></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const modeToggle = document.getElementById('mode-toggle-checkbox');
+        const sidebar = document.querySelector('.sidebar');
+        const chatContainer = document.querySelector('.chat-container');
+        const newConversationBtn = document.getElementById('new-conversation-btn');
+        const conversationContent = document.querySelector('.conversation-content');
+
+        let messageCount = 0;
+
+        // Mode toggle functionality
+        modeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode');
+            chatContainer.classList.toggle('light-mode');
+            chatContainer.classList.toggle('dark-mode');
+            
+            // Update tooltip text color
+            const tooltipText = document.querySelector('.tooltiptext');
+            if (sidebar.classList.contains('collapsed')) {
+                tooltipText.textContent = 'Open Sidebar';
+            } else {
+                tooltipText.textContent = 'Close Sidebar';
+            }
+        });
+
+        // Sidebar toggle functionality
+        sidebarToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('collapsed');
+            const tooltipText = document.querySelector('.tooltiptext');
+            const chevron = sidebarToggle.querySelector('i');
+            
+            if (sidebar.classList.contains('collapsed')) {
+                tooltipText.textContent = 'Open Sidebar';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                tooltipText.textContent = 'Close Sidebar';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        });
+
+        // New conversation functionality
+        newConversationBtn.addEventListener('click', function () {
+            chatBox.innerHTML = '<div class="empty-state"><div><h2>New conversation started!</h2><p>How can I help you today?</p></div></div>';
+            conversationContent.textContent = "New Conversation Started!";
+            messageCount = 0;
+        });
+
+        // Send message functionality
+        sendButton.addEventListener('click', sendMessage);
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message !== '') {
+                // Remove empty state if it exists
+                if (messageCount === 0) {
+                    chatBox.innerHTML = '';
+                }
+                
+                appendMessage('user', message);
+                getResponse(message);
+                userInput.value = '';
+                messageCount++;
+            }
+        }
+
+        function appendMessage(sender, message) {
+            const p = document.createElement('p');
+            p.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatBox.appendChild(p);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function getResponse(message) {
+            let response;
+            const greetings = ["Hello!", "Hi there!", "Hey!", "Greetings!"];
+            const affirmatives = ["Yes", "Certainly", "Of course", "Absolutely"];
+            const negatives = ["No", "Sorry, I can't do that", "Unfortunately not", "I'm afraid not"];
+            const thanks = ["You're welcome!", "No problem!", "Glad to help!", "Anytime!"];
+            
+            const commands = {
+                "help": "You can ask me questions or chat about various topics. Try commands like 'time', 'date', 'weather', 'joke', 'fact', or 'quote'!",
+                "time": getCurrentTime(),
+                "date": getCurrentDate(),
+                "weather": getWeatherInfo(),
+                "joke": getJoke(),
+                "fact": getFact(),
+                "quote": getQuote(),
+            };
+
+            const lowerMessage = message.toLowerCase();
+
+            if (lowerMessage in commands) {
+                response = commands[lowerMessage];
+            } else if (lowerMessage.includes("thank")) {
+                response = getRandomElement(thanks);
+            } else if (lowerMessage.includes("yes")) {
+                response = getRandomElement(affirmatives);
+            } else if (lowerMessage.includes("no")) {
+                response = getRandomElement(negatives);
+            } else if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
+                response = getRandomElement(greetings);
+            } else {
+                response = "I'm a simple chatbot. Try asking me for 'help', 'time', 'date', 'weather', a 'joke', 'fact', or 'quote'!";
+            }
+
+            setTimeout(() => appendMessage('ChatGPT', response), 1000);
+        }
+
+        function getCurrentTime() {
+            const now = new Date();
+            return `Current time is ${now.toLocaleTimeString()}`;
+        }
+
+        function getCurrentDate() {
+            const now = new Date();
+            return `Today's date is ${now.toDateString()}`;
+        }
+
+        function getWeatherInfo() {
+            const weatherData = {
+                temperature: getRandomNumber(10, 35),
+                condition: getRandomElement(["Sunny", "Cloudy", "Rainy", "Windy"]),
+            };
+            return `Current weather: ${weatherData.temperature}°C, ${weatherData.condition}`;
+        }
+
+        function getJoke() {
+            const jokes = [
+                "Why don't scientists trust atoms? Because they make up everything!",
+                "Parallel lines have so much in common. It's a shame they'll never meet.",
+                "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+                "Why did the scarecrow win an award? Because he was outstanding in his field!"
+            ];
+            return getRandomElement(jokes);
+        }
+
+        function getFact() {
+            const facts = [
+                "Ants stretch when they wake up in the morning.",
+                "A group of flamingos is called a flamboyance.",
+                "Honey never spoils.",
+                "The shortest war in history lasted only 38 minutes.",
+                "Octopuses have three hearts."
+            ];
+            return getRandomElement(facts);
+        }
+
+        function getQuote() {
+            const quotes = [
+                "The only way to do great work is to love what you do. – Steve Jobs",
+                "In the middle of difficulty lies opportunity. – Albert Einstein",
+                "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill"
+            ];
+            return getRandomElement(quotes);
+        }
+
+        function getRandomElement(array) {
+            const randomIndex = Math.floor(Math.random() * array.length);
+            return array[randomIndex];
+        }
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Initialize with a welcome message
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial state
+            const chevron = sidebarToggle.querySelector('i');
+            chevron.style.transform = 'rotate(0deg)';
+        });
+    </script>
+</body>
+</html>
